@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda | Carlos & Ana</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FAFAFA; 
+            color: #333333;
+            text-align: center;
+        }
+
+        /* PORTADA */
+        .portada {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #FFFFFF;
+            padding: 20px;
+        }
+        .pre-titulo { font-size: 14px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
+        .nombres { font-family: 'Great Vibes', cursive; font-size: 70px; margin: 0; color: #D4AF37; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .fecha { font-size: 18px; letter-spacing: 2px; margin-top: 20px; border-top: 1px solid #D4AF37; border-bottom: 1px solid #D4AF37; padding: 10px 0; }
+
+        /* CONTADOR */
+        .seccion-contador { padding: 50px 20px; background-color: #FFFFFF; }
+        .titulo-seccion { font-family: 'Great Vibes', cursive; font-size: 40px; color: #D4AF37; margin-bottom: 20px; }
+        .contador-caja { display: flex; justify-content: center; gap: 15px; }
+        .tiempo { background-color: #F5F5F5; border: 1px solid #EAEAEA; border-radius: 10px; padding: 15px; min-width: 60px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .numero { font-size: 28px; font-weight: 600; color: #333333; display: block; }
+        .etiqueta { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #888888; }
+
+        /* UBICACIÓN */
+        .seccion-ubicacion { padding: 50px 20px; background-color: #F9F9F9; }
+        .icono-lugar { font-size: 40px; color: #D4AF37; margin-bottom: 15px; }
+        .lugar-nombre { font-size: 20px; font-weight: 600; margin-bottom: 5px; }
+        .lugar-direccion { font-size: 14px; color: #666666; margin-bottom: 25px; }
+        .btn-mapa { display: inline-block; background-color: #333333; color: #FFFFFF; text-decoration: none; padding: 15px 30px; border-radius: 30px; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; transition: background 0.3s; margin-top: 15px; }
+        .btn-mapa:hover { background-color: #D4AF37; }
+
+        /* RSVP */
+        .seccion-rsvp { padding: 60px 20px; background-color: #FFFFFF; }
+        .btn-whatsapp { display: inline-flex; align-items: center; gap: 10px; background-color: #25D366; color: #FFFFFF; text-decoration: none; padding: 15px 35px; border-radius: 30px; font-size: 16px; font-weight: 600; margin-top: 20px; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
+
+        /* BOTÓN FLOTANTE DE MÚSICA */
+        .btn-musica {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #D4AF37;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1000; 
+            animation: latido 2s infinite;
+        }
+        @keyframes latido {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+        .pausado { animation: none; opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+    <div class="portada">
+        <div class="pre-titulo">Nuestra Boda</div>
+        <h1 class="nombres">Carlos & Ana</h1>
+        <div class="fecha">14 DE NOVIEMBRE 2026</div>
+    </div>
+
+    <div class="seccion-contador">
+        <div class="titulo-seccion">Faltan...</div>
+        <div class="contador-caja">
+            <div class="tiempo"><span class="numero" id="dias">00</span><span class="etiqueta">Días</span></div>
+            <div class="tiempo"><span class="numero" id="horas">00</span><span class="etiqueta">Hrs</span></div>
+            <div class="tiempo"><span class="numero" id="minutos">00</span><span class="etiqueta">Min</span></div>
+            <div class="tiempo"><span class="numero" id="segundos">00</span><span class="etiqueta">Seg</span></div>
+        </div>
+    </div>
+
+    <div class="seccion-ubicacion">
+        <i class="fa-solid fa-church icono-lugar"></i>
+        <div class="lugar-nombre">Hacienda Teya</div>
+        <div class="lugar-direccion">Mérida - Kanasín, Yucatán</div>
+        
+        <div class="mapa-contenedor" style="margin: 20px auto; max-width: 90%; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.992837267597!2d-89.55577608882583!3d20.95277158067466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5676e107db6965%3A0xc345f1b1359c1186!2sHacienda%20Teya!5e0!3m2!1sen!2smx!4v1710000000000!5m2!1sen!2smx" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Hacienda+Teya+Yucatan" target="_blank" class="btn-mapa">
+            <i class="fa-solid fa-location-dot"></i> Abrir en la App
+        </a>
+    </div>
+
+    <div class="seccion-rsvp">
+        <div class="titulo-seccion">Asistencia</div>
+        <p>Por favor, confirma tu asistencia antes del 1 de Noviembre.</p>
+        <a href="https://wa.me/529991234567?text=Hola,%20con%20mucho%20gusto%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Carlos%20y%20Ana." target="_blank" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp
+        </a>
+    </div>
+
+    <!-- REPRODUCTOR DE MÚSICA OCULTO (Enlace de Dropbox adaptado con raw=1) -->
+    <audio id="miMusica" loop>
+        <source src="https://www.dropbox.com/scl/fi/na3x1e0fg68mdisdelxs0/BANDA-MS-Mi-Mayor-Anhelo-__-Letra-MP3_160K.mp3?rlkey=e3as7izx6g3q2qa5paa261hm3&st=zqn6q1z8&raw=1" type="audio/mpeg">
+    </audio>
+
+    <!-- BOTÓN FLOTANTE -->
+    <button id="btnMusica" class="btn-musica">
+        <i class="fa-solid fa-music"></i>
+    </button>
+
+    <script>
+        // LÓGICA DEL CONTADOR
+        const fechaBoda = new Date(2026, 10, 14, 17, 0, 0).getTime();
+        const actualizarContador = setInterval(function() {
+            const ahora = new Date().getTime();
+            const distancia = fechaBoda - ahora;
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            document.getElementById("dias").innerHTML = dias < 10 ? '0' + dias : dias;
+            document.getElementById("horas").innerHTML = horas < 10 ? '0' + horas : horas;
+            document.getElementById("minutos").innerHTML = minutos < 10 ? '0' + minutos : minutos;
+            document.getElementById("segundos").innerHTML = segundos < 10 ? '0' + segundos : segundos;
+
+            if (distancia < 0) {
+                clearInterval(actualizarContador);
+                document.querySelector(".contador-caja").innerHTML = "<div class='titulo-seccion' style='font-size:25px;'>¡El gran día ha llegado!</div>";
+            }
+        }, 1000);
+
+        // LÓGICA DE LA MÚSICA
+        const reproductor = document.getElementById('miMusica');
+        const botonMusica = document.getElementById('btnMusica');
+        let sonando = false;
+
+        botonMusica.addEventListener('click', function() {
+            if (sonando) {
+                reproductor.pause();
+                botonMusica.innerHTML = '<i class="fa-solid fa-music"></i>';
+                botonMusica.classList.add('pausado');
+                sonando = false;
+            } else {
+                reproductor.play().catch(e => console.log("Error de reproducción:", e));
+                botonMusica.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                botonMusica.classList.remove('pausado');
+                sonando = true;
+            }
+        });
+    </script>
+</body>
+</html>
